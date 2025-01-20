@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  db_auth:
+    container_name: db_auth
+    ports:
+      - "5438:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=db_auth
+    volumes:
+      - ./db_init.sql:/docker-entrypoint-initdb.d/db_init.sql
+    image: postgres:17.2-alpine
